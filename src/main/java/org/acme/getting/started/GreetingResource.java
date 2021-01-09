@@ -5,9 +5,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import io.quarkus.security.Authenticated;
 import org.jboss.logging.Logger;
 
-@Path("/hello")
+@Path("/api")
+@Authenticated
 public class GreetingResource {
     private static final Logger LOG = Logger.getLogger(GreetingResource.class);
 
