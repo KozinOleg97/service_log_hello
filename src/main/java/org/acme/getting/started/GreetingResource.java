@@ -8,6 +8,7 @@ import javax.ws.rs.core.MediaType;
 import io.quarkus.security.Authenticated;
 import org.jboss.logging.Logger;
 
+
 @Path("/api")
 @Authenticated
 public class GreetingResource {
