@@ -10,7 +10,7 @@ import javax.ws.rs.core.MediaType;
 import java.util.concurrent.atomic.LongAccumulator;
 import java.util.function.Supplier;
 
-@Path("/api")
+@Path("/")
 public class PrimeNumberResource {
 
     private final LongAccumulator highestPrime = new LongAccumulator(Long::max, 0);
