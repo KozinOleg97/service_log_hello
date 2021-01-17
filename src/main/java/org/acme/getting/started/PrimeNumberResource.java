@@ -16,6 +16,8 @@ public class PrimeNumberResource {
     private final LongAccumulator highestPrime = new LongAccumulator(Long::max, 0);
     private final MeterRegistry registry;
 
+    int i = 0;
+
     PrimeNumberResource(MeterRegistry registry) {
         this.registry = registry;
 
@@ -23,12 +25,18 @@ public class PrimeNumberResource {
         // to obtain the highest observed prime number
         registry.gauge("prime.number.max", this,
                 PrimeNumberResource::highestObservedPrimeNumber);
+        registry.gauge("prime.callcount", this,
+                PrimeNumberResource::callCount);
     }
+
+
+
 
     @GET
     @Path("/{number}")
     @Produces(MediaType.TEXT_PLAIN)
     public String checkIfPrime(@PathParam("number") long number) {
+        i++;
         if (number < 1) {
             return "Only natural numbers can be prime numbers.";
         }
@@ -62,5 +70,9 @@ public class PrimeNumberResource {
      */
     long highestObservedPrimeNumber() {
         return highestPrime.get();
+    }
+
+    int callCount() {
+        return i;
     }
 }
